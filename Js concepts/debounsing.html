@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+   
+    <script >
+        /*const getData = (key)=>{
+
+            console.log("fetching data... : "+key);
+        }
+        const getSearchResult = function (){
+            var myTimeout;
+
+            return function(){
+                clearTimeout(myTimeout);
+                myTimeout = setTimeout(()=>{
+                   // console.log("key.value : "+key.value);
+                    getData(arguments[0].value);
+                },300);
+            }
+        }
+       const btFn=getSearchResult();
+       a=10;*/
+       const getResultdata = (key) =>{
+           console.log("call server.. : "+key);
+       }
+       const getData= function() {
+        let timer;
+        var arg = arguments;
+        return  child = ()=>{
+            if(timer != undefined)
+            {
+                clearInterval(timer);
+            }
+            timer = setTimeout(()=>{
+                console.log("getData : "+arg);
+                getResultdata(arguments[0].value);
+            },300)
+        }
+       }
+       /*var chFn = getData(10);
+       const arrF1 = (...input) => {
+           console.log("test");
+           console.log("test : "+input);
+       }
+       arrF1(10,20);
+*/
+const calltoServer=()=>{
+    console.log("Resize called...");
+}
+const throttlingFn = () =>{
+    var flag=true;
+    return function(){
+        if(flag)
+        {
+            calltoServer();
+            flag=false;
+            setTimeout(()=>{
+                 flag=true;  
+            },300)
+        }
+        
+          
+    }
+}
+const btfn = throttlingFn();
+window.addEventListener("resize",btfn);
+
+
+    </script>
+</head>
+<body>
+    <input type="text" onkeyup="chFn(this)"></input>
+    <input type="button" value="Search" >
+</body>
+</html>

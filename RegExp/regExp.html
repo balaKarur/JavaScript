@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Regular Expressions</h2>
+<p>Click the button to do a case-insensitive search for "w3schools" in a string.</p>
+
+<button onclick="myFunction()">Try it</button>
+
+<p id="demo"></p>
+<p id="demo1"></p>
+<script>
+function myFunction() {
+  var str = "Visit@# W3Schools";
+
+  /*var str = "Visit W3Schools";
+  var patt1 = /w3schools/i;
+  var result = str.match(patt1);*/
+
+  var fileName = "demo#@<>.zip"
+  //var allSpecialCharacter = "`~!@#$%^&*()_-+={[}]|\\:;\"'<,>.? \/";
+  var allSpecialCharacter = "`~!@#$%^&*()_-=\+{[}]|\\:;\"'<,>.? \/";
+  var allowedSpecialCharReg = /[^-_()@\s.]/g;
+  var notAllowedSpecialCharArr = allSpecialCharacter.match(allowedSpecialCharReg);
+  notAllowedSpecialCharArr = notAllowedSpecialCharArr.filter( function( item, index, inputArray ) {
+           return inputArray.indexOf(item) == index;
+    });
+  var notAllowedSpecialChar = notAllowedSpecialCharArr.join().replaceAll(",","")+",";
+  var notAllowedSpecialChar1 = notAllowedSpecialChar.replaceAll("\"","\"")
+  var notAllowedSpecialChar1 = notAllowedSpecialChar.replaceAll("\\","\\\\")
+  //var notAllowedSpecialChar1 = notAllowedSpecialChar.replaceAll("/","\\\\/")
+  var myRegExp = new RegExp("["+notAllowedSpecialChar1+"]", "g");
+ //var myRegExp = new RegExp("`~!#", "g")
+  var resp =fileName.match(myRegExp);
+  //var resp = myRegExp.exec(fileName);
+  //var allowedSpecialChar = "[^-_()@\s.]";
+ // allowedSpecialChar = allowedSpecialChar.replace("\s"," ")
+  //var allowedSpecialCharReg = /[^allowedSpecialChar]/g;
+  
+ // var allowedSpecialCharReg = new RegExp(allowedSpecialChar,"g")
+ // var result = str.match(patt1)
+  //var notAllowedSpecialChar = allSpecialCharacter.match(allowedSpecialCharReg);
+ // var notAllowedSpecialChar = allowedSpecialCharReg.exec(allSpecialCharacter);
+  //var regObject = new RegExp(allowedSpecialChar,"g")
+ // var patt = /w3@sd#/i;
+  //var result = regObject.exec(str);
+  document.getElementById("demo").innerHTML = notAllowedSpecialChar;
+  document.getElementById("demo1").innerHTML = resp;
+}
+myFunction();
+</script>
+
+</body>
+</html>

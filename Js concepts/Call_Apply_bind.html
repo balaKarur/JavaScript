@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //call,apply, bind
+        var name={"fn":"bala",
+                  "ln":"mani"
+                };
+        var name2={"fn":"Anu",
+            "ln":"G"
+        };
+        const getFullname=function(state,city){
+        //const getFullname=(state,city)=>{
+            console.log(this.fn+" "+this.ln+" "+state+" "+city);
+            console.log("arg :"+this.fn+" "+this.ln+" "+arguments[0]+" "+arguments[1]);
+        }
+        
+        getFullname.call(name2,"KA","blore");  
+        getFullname.apply(name2,["KA","blore"]);
+        var fullNamebind = getFullname.bind(name2,["KA","blore"]) ;
+        console.log("Bind----");
+        fullNamebind();
+    </script>
+</body>
+</html>
